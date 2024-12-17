@@ -1,0 +1,35 @@
+random_seed: 42
+
+train:
+  logsitcregression:
+    train: True
+    param: {'C': 1.0, 'class_weight': {0: 0.15, 1: 0.85}, 'max_iter': 500, 'penalty': 'l2', 'solver': 'saga','n_jobs': -1}
+    use_grid_search: False
+
+  random_forest:
+    train : True
+    param: {'n_estimators': 200, 'min_samples_split': 20, 'min_samples_leaf': 10, 'class_weight': 'balanced_subsample'}
+
+    randomized_search: False
+  neural_network:
+    train: Treu
+    param: {'solver': 'adam',  'learning_rate': 'adaptive', 'hidden_layer_sizes': [265 ,128,32], 'alpha': 0.01, 'activation': 'relu'}
+    randomized_search: False
+
+
+  voting_classifier:
+    train: True      # Need (MLP, Random Forest, Logistic Regression) train : True
+    param:
+      voting: 'soft'
+      weights: [0.50, 0.25 , 0.25]
+
+
+    randomized_search: False
+
+
+
+eval:
+  use_optimal_threshold: True
+  
+
+  
